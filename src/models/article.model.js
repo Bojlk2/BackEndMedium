@@ -31,7 +31,7 @@ const articleSchema = new mongoose.Schema({
 })
 
 
-module.exports = mongoose.model( 'koder', articleSchema )
+module.exports = mongoose.model( 'article', articleSchema )
 
 
 
