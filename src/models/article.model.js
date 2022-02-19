@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 require('mongoose-type-url')
 
 const articleSchema = new mongoose.Schema({
-    authorName :{
+    author :{
         type: String,
         minlength: 2,
         maxlength: 20,
