@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 require('mongoose-type-url')
 
-const koderSchema = new mongoose.Schema({
+const articleSchema = new mongoose.Schema({
     authorName :{
         type: String,
         minlength: 2,
@@ -31,7 +31,7 @@ const koderSchema = new mongoose.Schema({
 })
 
 
-module.exports = mongoose.model( 'koder', koderSchema )
+module.exports = mongoose.model( 'koder', articleSchema )
 
 
 
