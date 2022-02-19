@@ -1,6 +1,6 @@
 const express = require('express')
 
-const mentors = require('../usecases/artivle.js')
+const articles = require('../usecases/article.usercase')
 
 const router = express.Router()
 
