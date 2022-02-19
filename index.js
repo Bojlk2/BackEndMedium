@@ -11,11 +11,11 @@ const {
 
 mongoose.connect(`mongodb+srv://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`)
     .then(() => {
-        console.log('Connect to DB')
+        
+        server.listen(8080, () => {
+            console.log('Medium is ready on http://localhost:8080')
+        })
     })
     .catch(error => {
         console.error('Error conection: ', error)
     })
-server.listen(8080, () => {
-    console.log('Medium is ready on http://localhost:8080')
-})
