@@ -1,9 +1,10 @@
 const express = require('express')
 const createError = require('http-errors')
 const articles = require('../usecases/articles.usecase')
+const auth = require('../middlewares/auth.middleware')
 const router = express.Router()
 
-router.post('/', async(request, response) => {
+router.post('/', auth, async(request, response) => {
     try {
         const articleData = request.body
         const articleCreate = await articles.create(articleData)
@@ -20,7 +21,7 @@ router.post('/', async(request, response) => {
     }
 })
 
-router.delete('/:id', async(request, response) => {
+router.delete('/:id', auth, async(request, response) => {
     try {
         const articleDelete = await articles.deleteById(request.params.id)
         if(!articleDelete) throw new createError(404, 'Articulo no encontrado')
@@ -37,7 +38,7 @@ router.delete('/:id', async(request, response) => {
     }
 })
 
-router.patch('/:id', async(request, response) => {
+router.patch('/:id', auth, async(request, response) => {
     try {
         const articleUpdate = await articles.update(request.params.id, request.body)
         if(!articleUpdate) throw new createError(404, 'Articulo no encontrado')
@@ -76,7 +77,7 @@ router.get('/:id', async(request, response) => {
         if(!articleFound) throw new createError(404, 'Articulo no encontrado')
         response.json({
             ok: true,
-            mentor: articleFound
+            article: articleFound
         })
     } catch (error) {
         response.status(error.status || 500)

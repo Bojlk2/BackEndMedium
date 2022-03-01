@@ -4,9 +4,9 @@ const router = express.Router()
 const users = require('../usecases/user.usecase')
 const auth = require('../middlewares/auth.middleware')
 
-router.use(auth)
+//router.use(auth)
 
-router.get('/', async(request, response) => {
+router.get('/', auth, async(request, response) => {
     try {
         const allUsers = await users.getAll()
         response.json({
@@ -38,7 +38,7 @@ router.post('/', async(request, response) => {
     }
 })
 
-router.delete('/:id', async(request, response) => {
+router.delete('/:id', auth, async(request, response) => {
     try {
         const userDeleted = await users.deleteById(request.params.id)
         if(!userDeleted) throw new createError(404, 'Usuario no encontrado')
@@ -55,7 +55,7 @@ router.delete('/:id', async(request, response) => {
     }
 })
 
-router.get('/:id', async(request, response) => {
+router.get('/:id', auth, async(request, response) => {
     try {
         const userFound = await users.getById(request.params.id)
         if(!userFound) throw new createError(404, 'Usuario no encontrado')
