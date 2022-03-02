@@ -17,6 +17,14 @@ app.use('/users', usersRouter)
 app.use('/articles', articlesRouter)
 app.use('/auth', authRouter)
 
+app.get('/', (request, response) => {
+    console.log('user:', request.user)
+    response.json({
+        ok: true,
+        message: 'MediumApi'
+    })
+})
+
 
 
 module.exports = app
